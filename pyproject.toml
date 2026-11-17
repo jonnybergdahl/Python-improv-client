@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "improv-client"
+version = "1.0.0"
+description = "Client for provisioning Improv Wi-Fi devices over serial and BLE"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Jonny Bergdahl", email = "github@bergdahl.it" },
+]
+keywords = ["improv", "wifi", "provisioning", "esphome", "ble", "serial"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development",
+    "Topic :: System :: Hardware",
+    "Topic :: System :: Embedded Systems",
+    "Topic :: Utilities",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = []
+
+[project.optional-dependencies]
+serial = ["pyserial-asyncio>=0.6"]
+ble = ["bleak>=0.22", "bleak-retry-connector>=3.5"]
+all = ["improv-client[serial,ble]"]
+dev = ["improv-client[all]", "pytest>=7", "sphinx>=7", "sphinx-rtd-theme>=2"]
+
+[project.urls]
+Github = "https://github.com/jonnybergdahl/Python-improv-client"
+Documentation = "https://jonnybergdahl.github.io/improv-client/"
+
+[project.scripts]
+improv-client = "improv_client.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "--doctest-modules"
+testpaths = [
+    "tests",
+    "src/improv_client/protocol.py",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]

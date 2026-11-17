@@ -1,0 +1,44 @@
+# Test firmware for improv-client: Improv over USB serial and BLE, no Wi-Fi credentials.
+#
+#   esphome run examples/esphome/improv-test.yaml --device /dev/cu.usbserial-XXXX
+#
+# Provision it with improv-client, then wipe the credentials again with
+#   esptool --port /dev/cu.usbserial-XXXX erase-flash
+# and flash again to repeat the test.
+
+esphome:
+  name: improv-test
+  friendly_name: Improv Test
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+# Improv serial runs on the logger's port, UART0 (the USB serial chip on the board).
+# On an ESP32-S3/C3 using its native USB port, add  hardware_uart: USB_SERIAL_JTAG
+logger:
+
+# No networks: credentials come from Improv.
+wifi:
+
+improv_serial:
+
+esp32_improv:
+  # No authorization: the device starts AUTHORIZED. To test the authorization flow
+  # on a board with a BOOT button (GPIO0), replace "none" with "boot_button" and add:
+  #
+  # binary_sensor:
+  #   - platform: gpio
+  #     id: boot_button
+  #     name: Boot button
+  #     pin:
+  #       number: GPIO0
+  #       inverted: true
+  #       mode:
+  #         input: true
+  #         pullup: true
+  authorizer: none
+
+web_server:
+  port: 80
