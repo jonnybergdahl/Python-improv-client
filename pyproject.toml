@@ -20,7 +20,7 @@ classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Software Development",
     "Topic :: System :: Hardware",
-    "Topic :: System :: Embedded Systems",
+    "Topic :: Software Development :: Embedded Systems",
     "Topic :: Utilities",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -34,7 +34,7 @@ dependencies = []
 serial = ["pyserial-asyncio>=0.6"]
 ble = ["bleak>=0.22", "bleak-retry-connector>=3.5"]
 all = ["improv-client[serial,ble]"]
-dev = ["improv-client[all]", "pytest>=7", "sphinx>=7", "sphinx-rtd-theme>=2", "build", "twine>=6.1"]
+dev = ["improv-client[all]", "pytest>=7", "sphinx>=7", "sphinx-rtd-theme>=2", "build", "twine>=6.1", "trove-classifiers"]
 
 [project.urls]
 Github = "https://github.com/jonnybergdahl/Python-improv-client"
